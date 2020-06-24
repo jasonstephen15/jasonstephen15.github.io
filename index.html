@@ -32,6 +32,30 @@
 	</div>
 </nav>
 
+
+<button id="button">Send a notification</button>
+<script>
+
+document.getElementById('button').addEventListener('click',function(){		
+	if ('Notification' in window) {
+		let ask = Notification.requestPermission();
+		ask.then( permission => {
+      	if ( permission === "granted" ) {
+				let msg = new Notification( "Incoming notification!", {
+					body: 'You have a new message.',
+          		icon: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/skype_icon.png'
+        		});
+				msg.addEventListener( "click", event => {
+      			alert( "Click received" );
+      		})
+			}
+		});
+	}
+});
+
+
+</script>
+
 <!--- Welcome Section -->
 <div class="container-fluid padding">
 	<div class="row welcome text-center">
